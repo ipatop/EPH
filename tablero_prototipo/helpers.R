@@ -148,7 +148,8 @@ genera_aes_pobrezaEP_plot <- function(input){
         x = ~ FECHA,
         y = ~ tasa, 
         color = ~ tasa_tipo,
-        shape = ~ SEXO)
+        shape = ~ SEXO,
+        linetype = ~ SEXO)
   }else{ # Si no separamos por sexo
       aes_plot <- aes_(
         x = ~ FECHA,
@@ -179,12 +180,13 @@ genera_aes_barrasEP_plot <- function(input){
     aes_plot <- aes_(
       x = ~ TIPO_INGRESO,
       y = ~ INGRESO, 
-      fill = ~ SEXO)
+      fill = ~ SEXO,
+      alpha=0.7)
   }else{ # Si no separamos por sexo
     aes_plot <- aes_(
       x = ~ TIPO_INGRESO,
-      y = ~ INGRESO
-    )
+      y = ~ INGRESO,
+      alpha=0.7)
     
   }
   return(aes_plot)

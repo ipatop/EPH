@@ -216,8 +216,10 @@ shinyServer(function(input, output) {
     
     dataset_p2() %>%
       ggplot(aes_plot) +
-      geom_pointline() +
+      geom_point() +
+      geom_line()+
       scale_color_discrete(name = 'Población')+
+      scale_color_brewer(palette="Set2")+
       ylab('TASAS') +
       theme_light() +
       theme(axis.title = element_text(size=15),
@@ -228,7 +230,8 @@ shinyServer(function(input, output) {
         date_breaks = '1 year',
         date_minor_breaks = '3 months',
         labels = function(x) format(x,'%Y-%m')
-      ) 
+      ) +
+      labs(title = paste0("Tasas de ",input$tasa_tipo, " separando por ",input$variable_zona_t2),caption  = "Citar estos datos como: OCEPP y TDDP (2022). Tablero del nuevo mercado laboral argentino. Recuperado de: https://arielolafsalgado.shinyapps.io/tablero_prototipo/")
       
   })
 
@@ -275,7 +278,11 @@ shinyServer(function(input, output) {
       scale_x_discrete(name = 'INGRESO') +
       scale_y_continuous(name = '% del ingreso') +
       scale_fill_discrete(name = 'GENERO') +
-      theme_light()
+      scale_fill_manual(values=c("#999999", "#E69F00"))+
+     # scale_fill_brewer(palette="Set1")+
+      theme_light()+
+      labs(title = paste0("Porcentage del ingreso según origen"),caption  = "Citar estos datos como: OCEPP y TDDP (2022). Tablero del nuevo mercado laboral argentino. Recuperado de: https://arielolafsalgado.shinyapps.io/tablero_prototipo/")
+    
   })
     
   output$plata_para_salir <- renderText({
